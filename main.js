@@ -5,7 +5,7 @@ const app = express()
 const PORT = 3000
 
 app.listen(PORT, ()=>{
-  console.log(`server created on port ${PORT}!`)
+  console.log(`http://localhost:${PORT}`)
 })
 
 // bodyParser中间件，处理转化body请求内容转，把不同格式的请求内容统一转为对象格式
@@ -16,14 +16,14 @@ app.use(bodyParser.urlencoded({
 // app.use(bodyParser.row())
 
 // 接口请求
-app.get('/dependencies', (req, res) => {
+app.get('/test/dependencies', (req, res) => {
   const {type} = req.query
-  console.log('type', type)
+  console.log('types', type)
   readFile('./package.json').then(content => {
     content = JSON.parse(content)
     let text = type == 'dev' ? content['devDependencies'] : content['dependencies']
     res.status(200)
-    res.type('application/json')
+    // res.type('application/json')
     res.send(text)
   }).catch(err => {
     res.status(500)
@@ -32,9 +32,9 @@ app.get('/dependencies', (req, res) => {
   })
 })
 
-app.post('/add', (req, res) => {
+app.post('/test/add', (req, res) => {
   let body = req.body
-  res.status(500)
+  res.status(200)
   res.type('application/json')
   res.send(body)
 })
@@ -52,3 +52,5 @@ app.use((req, res) => {
   res.send('No Found')
   // res.redirect(301, 'http://www.baidu.com') // 301重定向
 })
+
+
