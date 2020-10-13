@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 // app.use(bodyParser.json())
-// app.use(bodyParser.row())
+// app.use(bodyParser.row()) 
 
 // 接口请求
 app.get('/test/dependencies', (req, res) => {
@@ -42,6 +42,7 @@ app.post('/test/add', (req, res) => {
 // 加载api模块
 app.use('/login', require('./router/login'))
 app.use('/user', require('./router/user'))
+app.use('/master', require('./router/master'))
 
 // 静态资源文件服务器
 app.use(express.static("./dist"))
