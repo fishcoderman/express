@@ -1,4 +1,5 @@
 const express = require('express')
+const cookieParser = require('cookie-parser');
 const {readFile} = require('./file/readFile.js')
 const bodyParser = require('body-parser')
 const app = express()
@@ -8,6 +9,7 @@ app.listen(PORT, ()=>{
   console.log(`http://localhost:${PORT}`)
 })
 
+app.use(cookieParser());
 // bodyParser中间件，处理转化body请求内容转，把不同格式的请求内容统一转为对象格式
 app.use(bodyParser.urlencoded({
   extended: true
